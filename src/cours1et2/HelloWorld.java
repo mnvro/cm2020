@@ -1,4 +1,4 @@
-package cm2020;
+package cours1et2;
 
 public class HelloWorld {
 

@@ -1,7 +1,7 @@
 package cours8et9;
 
 /**
- * @author Dukadjin
+ * @author Dukagjin
  * Classe permettant d'afficher une date
  */
 public class Date {

@@ -1,4 +1,4 @@
-package cm2020;
+package cours1et2;
 
 import javax.swing.JOptionPane;
 
@@ -18,7 +18,7 @@ public class JavaRecueilExercice {
 		JOptionPane.showMessageDialog(null, "Bonjour "+ nom);
 		int nb1, nb2, resultat ; //Exercice 7 & 8
 		String nb1s = JOptionPane.showInputDialog("Donnez-moi le premier nombre :");
-		String nb2s = JOptionPane.showInputDialog("Donnez-moi le deuxiÃ¨me nombre :");
+		String nb2s = JOptionPane.showInputDialog("Donnez-moi le deuxième nombre :");
 		nb1 = Integer.parseInt(nb1s);
 		nb2 = Integer.parseInt(nb2s);
 		String resultats = JOptionPane.showInputDialog("Donnez-moi le resultat de :" +nb1 +" + "+ nb2);
