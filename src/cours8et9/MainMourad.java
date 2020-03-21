@@ -15,9 +15,6 @@ public class MainMourad {
 		System.out.println(date1.toString());
 		System.out.println(date3.toString());
 		System.out.println(date2.toString());
-		
-		
-		
 	}
 
 }

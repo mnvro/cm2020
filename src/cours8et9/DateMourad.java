@@ -1,3 +1,4 @@
+
 package cours8et9;
 
 /**
@@ -11,15 +12,28 @@ public class DateMourad {
 	private int mois;
 	private int annee;
 
+	/**
+	 * Constructeur sans argument
+	 */
 	public DateMourad() {
 	}
 	
+	/**
+	 * Constructeur...
+	 * @param jour Un entier compris entre 1 et 31 qui correspond au jour
+	 * @param mois Un entier 
+	 * @param annee Un entier sur 4 chiffres 
+	 */
 	public DateMourad (int jour, int mois, int annee) {
 		this.jour = jour;
 		this.mois = mois;
 		this.annee = annee;
 	}
 	
+	/**
+	 * Constructeur...
+	 * @param date La date sous forme d'une chaine de caractères, par exemple "30/12/1969"
+	 */
 	public DateMourad (String date) {
 		String[] convert = date.split("/");
 
@@ -33,11 +47,13 @@ public class DateMourad {
 	}
 	
 	public String toString () {
-	
-		return jour+"/"+mois+"/"+annee;
-		
+		return jour+"/"+mois+"/"+annee;	
 	}
 	
+	/**
+	 * 
+	 * @return Un entier ...
+	 */
 	public int getJour() {
 		return this.jour;
 		
@@ -63,10 +79,6 @@ public class DateMourad {
 		this.annee = annee;
 		
 	}
-	
-
-	
-
 
 }
 

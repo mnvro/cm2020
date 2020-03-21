@@ -1,5 +1,7 @@
 package cours8et9;
 
+import java.text.NumberFormat;
+
 /**
  * La classe CoordonneesGPS permet de créer des coordonnées GPS.
  * Cette classe contient 2 constructeurs
@@ -7,7 +9,7 @@ package cours8et9;
  *
  */
 public class CoordonneesGPS {
-	private double latitude;  // par facilité j'encode cela en radians
+	private double latitude;  // par facilité j'encode cela en radians 
 	private double longitude; // par facilité j'encode cela en radians
 	
 	/**
@@ -45,23 +47,35 @@ public class CoordonneesGPS {
 	public CoordonneesGPS() {
 	}
 	
+	/**
+	 * La méthode getDistance() permet de calculer la distance entre 2 points dont on connait les coordonnées GPS
+	 * @param b Les coordonnées GPS d'un autre point
+	 * @return La distance en km entre les coordonnées GPS en cours et celles passées en argument
+	 */
 	public double getDistance(CoordonneesGPS b) {
 		double m; // la distance en milles marins
 		m = 60*(Math.acos(
 		  Math.sin(this.latitude)*Math.sin(b.latitude)+
 		  Math.cos(this.latitude)*Math.cos(b.latitude)*Math.cos(b.longitude-this.longitude)
-		))*360/2/Math.PI;
+		)*360/2/Math.PI);
 		double km = m*1.852; // la distance en km
 //		System.out.println(m+" miles = "+km+" km"+"\n");
 		return km;
 	}
+	/**
+	 * La méthode main permet juste de tester la classe
+	 * @param args Non utilisé
+	 */
 	public static void main(String[] args) {
 		CoordonneesGPS cGPS1 = new CoordonneesGPS(50,39,0,4,34,0); // Ottignies
 		CoordonneesGPS cGPS2 = new CoordonneesGPS(50,51,39,4,23,15); // Schaerbeek
-		System.out.println("La distance entre Ottignies et Schaerbeek est de "+cGPS1.getDistance(cGPS2) + " km\n\n");
+		NumberFormat format=NumberFormat.getInstance();
+		format.setMinimumFractionDigits(2); //nb de chiffres apres la virgule
+		String s=format.format(cGPS1.getDistance(cGPS2));
+		System.out.println("La distance entre Ottignies et Schaerbeek est de "+s + " km\n\n");
 		//cGPS1 = new CoordonneesGPS();
 		cGPS2 = new CoordonneesGPS(48,51,24,2,21,7); // Paris
-		System.out.println("La distance entre Ottignies et Paris est de "+cGPS1.getDistance(cGPS2) + " km\n\n");
+		System.out.println("La distance entre Ottignies et Paris est de "+format.format(cGPS1.getDistance(cGPS2)) + " km\n\n");
 	}
 
 	
