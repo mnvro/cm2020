@@ -1,6 +1,6 @@
 package cours10et11;
 
-
+import java.text.NumberFormat;
 
 import javax.swing.JOptionPane;
 
@@ -9,29 +9,19 @@ import javax.swing.JOptionPane;
  * @author francoisparizad
  *
  */
-public class GPS {
+public class GPSFrançois2 {
 
 	private double latitude, longitude;
 
-	/**
-	 * @param latitude la latitude en radian
-	 * @param longitude la longitude en radian
-	 */
-	public GPS(double latitude, double longitude) {
+	public GPSFrançois2(double latitude, double longitude) {
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
 
-	/**
-	 * @return
-	 */
 	public double getLatitude() {
 		return this.latitude;
 	}
 
-	/**
-	 * @return
-	 */
 	public double getLongitude() {
 		return this.longitude;
 	}
@@ -51,10 +41,10 @@ public class GPS {
 	 * @return
 	 */
 	public static double calculeDistance(GPSFrançois2 gpsA, GPSFrançois2 gpsB) {
-		double P1 = Math.sin(gpsA.getLatitude()) * Math.sin(gpsB.getLatitude());
-		double P2 = Math.cos(gpsA.getLatitude()) * Math.cos(gpsB.getLatitude());
-		double difference = Math.cos(gpsB.getLongitude() - gpsA.getLongitude())*(360/2/Math.PI);
-		return 1.852 * (60 * (Math.acos(P1 + P2 * difference)));
+		double P1 = Math.sin(gpsA.getLatitude()/360*2*Math.PI) * Math.sin(gpsB.getLatitude()/360*2*Math.PI);
+		double P2 = Math.cos(gpsA.getLatitude()/360*2*Math.PI) * Math.cos(gpsB.getLatitude()/360*2*Math.PI);
+		double difference = Math.cos((gpsB.getLongitude()/360*2*Math.PI) - gpsA.getLongitude()/360*2*Math.PI);
+		return 1.852 * (60 * (Math.acos(P1 + P2 * difference))*360/2/Math.PI);
 	}
 
 	public static void main(String args[]) {
@@ -69,7 +59,10 @@ public class GPS {
 		LO2 = Integer.parseInt(LO2s);
 		GPSFrançois2 P1 = new GPSFrançois2(LA, LO);
 		GPSFrançois2 P2 = new GPSFrançois2(LA2, LO2);
-		System.out.println("la distance en miles entre le Point 1 et le Point 2 est de " + GPS.calculeDistance(P1, P2));
+		NumberFormat format=NumberFormat.getInstance();
+ 		format.setMinimumFractionDigits(2); //nb de chiffres apres la virgule
+ 		String s=format.format(GPSFrançois2.calculeDistance(P1, P2));
+		System.out.println("la distance en miles entre le Point 1 et le Point 2 est de " + s);
 	}
 
 }

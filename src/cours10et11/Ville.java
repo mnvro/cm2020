@@ -47,8 +47,8 @@ public class Ville {
 	
 	public static void main(String[] args) {
 	 
-		Ville Bujumbura = new Ville("nom",new GpsFloris(0.586674975,0.5124269231) );
-		Ville Kigali = new Ville("nom",new GpsFloris(0.033930946, 0.5246791344));
+		Ville Bujumbura = new Ville("Bujumbura",new GpsFloris(0.586674975,0.5124269231) );
+		Ville Kigali = new Ville("Kigali",new GpsFloris(0.033930946, 0.5246791344));
 		System.out.println("La distance entre les deux villes est "+ Ville.calculeDistance(Bujumbura, Kigali)+" Km");
 	}
 
