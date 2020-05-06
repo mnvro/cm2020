@@ -3,31 +3,29 @@ package be.itscm.cours18.view;
 import javax.swing.JButton;
 
 public class JButtonTicTacToe extends JButton {
-	private int colonne,ligne;
-	private boolean cliquable = true;
+	private int column,row;
+	private boolean clickable = true;
 
-	public JButtonTicTacToe(int colonne, int ligne) {
+	public JButtonTicTacToe(int column, int row) {
 		super();
-		this.colonne = colonne;
-		this.ligne = ligne;
+		this.column = column;
+		this.row = row;
 	}
 
-	public int getColonne() {
-		return colonne;
+	public int getColumn() {
+		return column;
 	}
 
-	
-
-	public boolean estCliquable() {
-		return cliquable;
+	public boolean isClickable() {
+		return clickable;
 	}
 
-	public void setCliquable(boolean cliquable) {
-		this.cliquable = cliquable;
+	public void setClickable(boolean cliquable) {
+		this.clickable = cliquable;
 	}
 
-	public int getLigne() {
-		return ligne;
+	public int getRow() {
+		return row;
 	}
 	
 }

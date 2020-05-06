@@ -11,41 +11,39 @@ import be.itscm.cours18.view.JFrameTicTacToe;
 
 public class MainTicTacToe implements ActionListener {
 	private JFrameTicTacToe jFrameTicTacToe;
-	private TicTacToeModel modele;
-	//	private int tour = 0;
+	private TicTacToeModel ticTacToeModel;
+	
 	public MainTicTacToe() {
 		jFrameTicTacToe = new JFrameTicTacToe();
 		jFrameTicTacToe.setVisible(true);
 		jFrameTicTacToe.ajouteActionPerformed(this);
-		modele = new TicTacToeModel();
+		ticTacToeModel = new TicTacToeModel();
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		JButtonTicTacToe monJButton = (JButtonTicTacToe)e.getSource();
-		if (monJButton.estCliquable()) {
-			monJButton.setCliquable(false);
-			int colonne = monJButton.getColonne();
-			int ligne = monJButton.getLigne();
-			if (modele.getTurn() == 0) {
-				JFrameTicTacToe.changeImageJButton(monJButton,JFrameTicTacToe.IMAGE_O);
+		JButtonTicTacToe myJButton = (JButtonTicTacToe)e.getSource();
+		if (myJButton.isClickable()) {
+			myJButton.setClickable(false);
+			int colonne = myJButton.getColumn();
+			int ligne = myJButton.getRow();
+			if (ticTacToeModel.getTurn() == 0) {
+				JFrameTicTacToe.changeImageJButton(myJButton,JFrameTicTacToe.IMAGE_O);
 			}else {
-				JFrameTicTacToe.changeImageJButton(monJButton,JFrameTicTacToe.IMAGE_X);
+				JFrameTicTacToe.changeImageJButton(myJButton,JFrameTicTacToe.IMAGE_X);
 			}
-			modele.play(colonne, ligne);
-			int gagnant = modele.win();
-//			System.out.println("gagnant ="+gagnant);
+			ticTacToeModel.play(colonne, ligne);
+			int gagnant = ticTacToeModel.win();
 			if (gagnant >=0) {
-				JOptionPane.showMessageDialog(null,"And the winner is "+modele.ARRAY_CHAR[gagnant]);
+				JOptionPane.showMessageDialog(null,"And the winner is "+ticTacToeModel.ARRAY_CHAR[gagnant]);
 				jFrameTicTacToe.reinit();
-				modele = new TicTacToeModel();
+				ticTacToeModel = new TicTacToeModel();
 			} else {
 				if (gagnant == -2) {
 					JOptionPane.showMessageDialog(null,"Draw!");
 					jFrameTicTacToe.reinit();
-					modele = new TicTacToeModel();
+					ticTacToeModel = new TicTacToeModel();
 				}
-			}
-			
+			}	
 		}
 	}
 	public static void main(String[] args) {

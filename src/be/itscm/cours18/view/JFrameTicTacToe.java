@@ -15,16 +15,14 @@ import java.awt.GridBagConstraints;
 import javax.swing.ImageIcon;
 
 public class JFrameTicTacToe extends JFrame  {
-	public static final int NBCOLONNES = 3;
-	public static final int NBLIGNES = 3;
+	public static final int NBR_COLUMNS = 3;
+	public static final int NBR_ROWS = 3;
 	public static final String IMAGE_O = "/be/itscm/cours18/images/tic case o.png";
 	public static final String IMAGE_X = "/be/itscm/cours18/images/tic case x.png";
-	public static final String IMAGE_VIDE = "/be/itscm/cours18/images/tic case vide.png";
+	public static final String IMAGE_EMPTY = "/be/itscm/cours18/images/tic case vide.png";
 	
 	private JPanel contentPane;
-	private JButtonTicTacToe plateau[][] = new JButtonTicTacToe[NBCOLONNES][NBLIGNES];
-
-	
+	private JButtonTicTacToe jButtonMatrix[][] = new JButtonTicTacToe[NBR_COLUMNS][NBR_ROWS];
 
 	/**
 	 * Create the frame.
@@ -41,57 +39,57 @@ public class JFrameTicTacToe extends JFrame  {
 		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
-		for (int colonne = 0 ; colonne < NBCOLONNES ; colonne++) {
-			for (int ligne = 0 ; ligne < NBLIGNES ; ligne++) {
-				plateau[colonne][ligne] = new JButtonTicTacToe(ligne,colonne);
-				plateau[colonne][ligne].setIcon(new ImageIcon(
-						JFrameTicTacToe.class.getResource(IMAGE_VIDE)));
-				plateau[colonne][ligne].setBorder(new EmptyBorder(0, 0, 0, 0));
+		for (int column = 0 ; column < NBR_COLUMNS ; column++) {
+			for (int row = 0 ; row < NBR_ROWS ; row++) {
+				jButtonMatrix[column][row] = new JButtonTicTacToe(row,column);
+				jButtonMatrix[column][row].setIcon(new ImageIcon(
+						JFrameTicTacToe.class.getResource(IMAGE_EMPTY)));
+				jButtonMatrix[column][row].setBorder(new EmptyBorder(0, 0, 0, 0));
 				GridBagConstraints gbc = new GridBagConstraints();
-				gbc.gridx = colonne;
-				gbc.gridy = ligne;
-				contentPane.add(plateau[colonne][ligne], gbc);
+				gbc.gridx = column;
+				gbc.gridy = row;
+				contentPane.add(jButtonMatrix[column][row], gbc);
 			}
 		}
 
 	}
 	
 	public void reinit() {
-		for (int colonne = 0 ; colonne < NBCOLONNES ; colonne++) {
-			for (int ligne = 0 ; ligne < NBLIGNES ; ligne++) {
+		for (int column = 0 ; column < NBR_COLUMNS ; column++) {
+			for (int row = 0 ; row < NBR_ROWS ; row++) {
 				
-				plateau[colonne][ligne].setIcon(new ImageIcon(
-						JFrameTicTacToe.class.getResource(IMAGE_VIDE)));
-				plateau[colonne][ligne].setCliquable(true);
+				jButtonMatrix[column][row].setIcon(new ImageIcon(
+						JFrameTicTacToe.class.getResource(IMAGE_EMPTY)));
+				jButtonMatrix[column][row].setClickable(true);
 			}
 		}
 	}
 
 	/**
 	 * Cette méthode permet de modifier l'image sur le jButton dont on précise la ligne et la colonne
-	 * @param colonne la colonne où se trouve le JButton (0 = tout à gauche)
-	 * @param ligne la ligne où se trouve le JButton (0 = tout en haut)
+	 * @param column la colonne où se trouve le JButton (0 = tout à gauche)
+	 * @param row la ligne où se trouve le JButton (0 = tout en haut)
 	 * @param s le nom du fichier image (son chemin et son nom) - on peut utiliser une des 3 constantes de classes: IMAGE_O, IMAGE_X et IMAGE_VIDE
 	 */
-	public void changeImageJButton(int colonne, int ligne, String s) {
-		plateau[colonne][ligne].setIcon(new ImageIcon(
+	public void changeImageJButton(int column, int row, String s) {
+		jButtonMatrix[column][row].setIcon(new ImageIcon(
 				JFrameTicTacToe.class.getResource(s)));
 	}
 
 	/**
 	 * Cette méthode permet de modifier l'image sur le jButton
-	 * @param monJButtonTicTacToe le JButton dont on veut changer l'image
+	 * @param myJButtonTicTacToe le JButton dont on veut changer l'image
 	 * @param s le nom du fichier de la nouvelle image
 	 */
-	public static void changeImageJButton(JButtonTicTacToe monJButtonTicTacToe, String s) {
-		monJButtonTicTacToe.setIcon(new ImageIcon(
+	public static void changeImageJButton(JButtonTicTacToe myJButtonTicTacToe, String s) {
+		myJButtonTicTacToe.setIcon(new ImageIcon(
 				JFrameTicTacToe.class.getResource(s)));
 	}
 
 	public void ajouteActionPerformed(ActionListener al) {
-		for (int c = 0; c < NBCOLONNES; c++) {
-			for (int l = 0; l < NBLIGNES; l++) {
-				plateau[c][l].addActionListener(al);
+		for (int c = 0; c < NBR_COLUMNS; c++) {
+			for (int l = 0; l < NBR_ROWS; l++) {
+				jButtonMatrix[c][l].addActionListener(al);
 			}
 		}
 	}
