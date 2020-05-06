@@ -1,4 +1,4 @@
-package be.itscm.cours15.vue;
+package be.itscm.cours15.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -83,7 +83,6 @@ public class JFrame_15_7 extends JFrame implements ActionListener {
 		case "Ajouter" :
 			int nb1 = Integer.parseInt(jTextField1.getText());
 			int nb2 = Integer.parseInt(jTextField2.getText());
-
 			jTextFieldSomme.setText((nb1+nb2)+"");
 			break;
 		case "Cancel" :

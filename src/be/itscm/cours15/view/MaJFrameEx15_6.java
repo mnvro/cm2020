@@ -1,4 +1,4 @@
-package be.itscm.cours15.vue;
+package be.itscm.cours15.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

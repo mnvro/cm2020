@@ -1,5 +1,7 @@
 package be.cardinalmercier.cours14;
 
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 public class Personne {
@@ -51,10 +53,18 @@ public class Personne {
 	}
 
 	public static void main(String[] args) {
+		ArrayList<Personne> listePersonnes = new ArrayList<Personne>();
 		double taille = Double.parseDouble(JOptionPane.showInputDialog("Quel est votre taille ?"));
 		double masse = Double.parseDouble(JOptionPane.showInputDialog("Quel est votre poids ?"));
 		int age = Integer.parseInt(JOptionPane.showInputDialog("Quel est votre âge ?"));
-		JOptionPane.showMessageDialog(null, new Personne(masse,taille,age).toString());
+		listePersonnes.add(new Personne(masse, taille, age));
+		taille = Double.parseDouble(JOptionPane.showInputDialog("Quel est votre taille ?"));
+		masse = Double.parseDouble(JOptionPane.showInputDialog("Quel est votre poids ?"));
+		age = Integer.parseInt(JOptionPane.showInputDialog("Quel est votre âge ?"));
+		listePersonnes.add(new Personne(masse, taille, age));
+		for (Personne personne : listePersonnes) {
+			JOptionPane.showMessageDialog(null, personne);
+		}
 	}
 
 }

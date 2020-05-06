@@ -1,6 +1,5 @@
-package be.itscm.cours17.vue;
+package be.itscm.cours17.view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -14,27 +13,21 @@ import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 import javax.swing.ImageIcon;
 
-class JButtonPuissance4 extends JButton{
-	private int colonne, ligne;
 
-	public JButtonPuissance4(int colonne, int ligne) {
-		this.colonne = colonne;
-		this.ligne = ligne;
-	}
 
-	public int getColonne() {
-		return colonne;
-	}
-
-	public int getLigne() {
-		return ligne;
-	}
-	
-}
-
-public class JFramePuissance4_1 extends JFrame implements ActionListener {
+/**
+ * Solution de l'exercice 17.4
+ * Changez l’image quand on clique: 
+ * Si la case était vide, cela devient un pion rouge
+ * Si la cas était occupée par un pion d’une couleur, le pion change de couleur
+ *
+ * @author mnv
+ *
+ */
+public class JFramePuissance4_4 extends JFrame implements ActionListener {
 	private final int NBCOLONNES = 7;
 	private final int NBLIGNES = 7;
+	private int couleurEnCours = JButtonPuissance4.COULEUR_JAUNE;
 	
 	private JButtonPuissance4 matrice[][] = new JButtonPuissance4[NBCOLONNES][NBLIGNES];
 
@@ -47,7 +40,7 @@ public class JFramePuissance4_1 extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JFramePuissance4_1 frame = new JFramePuissance4_1();
+					JFramePuissance4_4 frame = new JFramePuissance4_4();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -59,7 +52,7 @@ public class JFramePuissance4_1 extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public JFramePuissance4_1() {
+	public JFramePuissance4_4() {
 		setTitle("Puissance 4");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 368, 390);
@@ -73,15 +66,17 @@ public class JFramePuissance4_1 extends JFrame implements ActionListener {
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
+
+		
 		for (int c = 0 ; c < NBCOLONNES ; c++) {
 			for (int l = 0 ; l < NBLIGNES ; l++) {
-				matrice[c][l] = new JButtonPuissance4(c,l);
+				matrice[c][l] = new JButtonPuissance4(c,l,JButtonPuissance4.COULEUR_AUCUNE);
 				matrice[c][l].addActionListener(this);
-				matrice[c][l].setIcon(new ImageIcon(JFramePuissance4_1.class.getResource("/be/itscm/cours17/images/case vide.png")));
+				matrice[c][l].setIcon(new ImageIcon(JFramePuissance4_4.class.getResource("/be/itscm/cours17/images/case vide.png")));
 				matrice[c][l].setBorder(new EmptyBorder(0, 0, 0, 0));
 				GridBagConstraints gbc = new GridBagConstraints();
 				gbc.gridx = c;
-				gbc.gridy = l;
+				gbc.gridy = l+1;
 				contentPane.add(matrice[c][l], gbc);
 			}
 		}
@@ -91,8 +86,23 @@ public class JFramePuissance4_1 extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButtonPuissance4 monButtonPuissance4 = (JButtonPuissance4)e.getSource();
-		System.out.println("on a cliqué en ("+monButtonPuissance4.getColonne()+","+monButtonPuissance4.getLigne()+")");
+		int c = monButtonPuissance4.getColonne();
+		int l = monButtonPuissance4.getLigne();
+		int color = monButtonPuissance4.getColor();
+		if (color == JButtonPuissance4.COULEUR_ROUGE) {
+			matrice[c][l].setIcon(
+			  new ImageIcon(JFramePuissance4_4.class.getResource("/be/itscm/cours17/images/case jaune.png")));
+			matrice[c][l].setColor(JButtonPuissance4.COULEUR_JAUNE);
+		}else {
+			matrice[c][l].setIcon(
+			  new ImageIcon(JFramePuissance4_4.class.getResource("/be/itscm/cours17/images/case rouge.png")));
+			matrice[c][l].setColor(JButtonPuissance4.COULEUR_ROUGE);
+		}
+		
+//		System.out.println("on a cliqué en ("+monButtonPuissance4.getColonne()+","+monButtonPuissance4.getLigne()+")");
 		
 	}
 
 }
+
+	
