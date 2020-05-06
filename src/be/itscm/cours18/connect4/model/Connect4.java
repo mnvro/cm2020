@@ -90,7 +90,7 @@ public class Connect4 {
 
 		// Find 4 aligned items in the same column
 		for (int c=0;c<NBR_COLUMNS;c++) {
-			if (find4alignedItems(c,0,0,1)) return ++turn%2;
+			if (find4alignedItems(c,0,0,1)) return ++turn%2; 
 		}
 
 		// Find 4 aligned items in the first diagonal \
