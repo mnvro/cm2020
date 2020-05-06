@@ -14,7 +14,7 @@ public class Connect4 {
 	public final static int tabColor[] = {RED,YELLOW};
 	public final static int NBR_COLUMNS = 7;
 	public final static int NBR_ROWS = 6;
-	
+
 	private int matrix[][] = new int [NBR_COLUMNS][NBR_ROWS];
 	private int turn = 0;// it's the reds who begin
 	private int nbTurn = 0;
@@ -93,11 +93,22 @@ public class Connect4 {
 			if (find4alignedItems(c,0,0,1)) return ++turn%2;
 		}
 
-		// Find 4 aligned items in the first diagonal
-		if (find4alignedItems(0,0,1,1)) return ++turn%2;
-
-		// Find 4 aligned items in the second diagonal
-		if (find4alignedItems(0,NBR_ROWS-1,1,-1)) return ++turn%2;
+		// Find 4 aligned items in the first diagonal \
+		for (int r=0;r<NBR_ROWS;r++) {// on commence en haut à gauche r++ on teste une ligne plus bas
+			if (find4alignedItems(0,r,1,1)) return ++turn%2;
+		}
+		for (int c=0;c<NBR_COLUMNS;c++) {// on commence en haut à gauche c++ on teste une colonne plus à droite
+			if (find4alignedItems(c,0,1,1)) return ++turn%2;
+		}
+		
+		// Find 4 aligned items in the second diagonal /
+		for (int r=NBR_ROWS-1;r>=0;r--) {// on commence en bas à gauche r-- on teste une ligne plus haut
+			if (find4alignedItems(0,r,1,-1)) return ++turn%2;
+		}
+		for (int c=0;c<NBR_COLUMNS;c++) {// on commence en bas à gauche c++ on teste une colonne plus à droite
+			if (find4alignedItems(c,NBR_ROWS-1,1,-1)) return ++turn%2;
+		}
+		
 		if (nbTurn == NBR_COLUMNS*NBR_ROWS) return -2;
 		return -1;
 	}
@@ -136,7 +147,7 @@ public class Connect4 {
 		s+=matrix[NBR_COLUMNS-1][r]+" │\n";
 		return s;
 	}
-	
+
 	public String toString() {
 		String s=toStringFirstLine();	
 		for (int r = 0 ; r < NBR_ROWS-1 ; r++) {
@@ -154,6 +165,7 @@ public class Connect4 {
 			case '1' : s2+="Y"; break;
 			default: s2+=s.charAt(i);
 			}
+		s2+="  1   2   3   4   5   6  7\n";
 		return s2;
 	}
 	public static void main(String[] args) {
@@ -174,6 +186,7 @@ public class Connect4 {
 			whoWins = connect4.win();
 		}while (whoWins==-1);
 		System.out.println(connect4.toString());
+		System.out.println("Who wins : "+whoWins);
 		switch (whoWins) {
 		case 0 : JOptionPane.showMessageDialog(null, "The Red wins"); break;
 		case 1 : JOptionPane.showMessageDialog(null, "The Yellow wins"); break;
