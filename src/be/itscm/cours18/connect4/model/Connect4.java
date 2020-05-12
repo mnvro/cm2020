@@ -12,6 +12,7 @@ public class Connect4 {
 	public final static int RED = 0;
 	public final static int YELLOW = 1;
 	public final static int tabColor[] = {RED,YELLOW};
+	public final static String tabColorString[] = {"red","yellow"};
 	public final static int NBR_COLUMNS = 7;
 	public final static int NBR_ROWS = 6;
 
@@ -100,7 +101,7 @@ public class Connect4 {
 		for (int c=0;c<NBR_COLUMNS;c++) {// on commence en haut à gauche c++ on teste une colonne plus à droite
 			if (find4alignedItems(c,0,1,1)) return ++turn%2;
 		}
-		
+
 		// Find 4 aligned items in the second diagonal /
 		for (int r=NBR_ROWS-1;r>=0;r--) {// on commence en bas à gauche r-- on teste une ligne plus haut
 			if (find4alignedItems(0,r,1,-1)) return ++turn%2;
@@ -108,7 +109,7 @@ public class Connect4 {
 		for (int c=0;c<NBR_COLUMNS;c++) {// on commence en bas à gauche c++ on teste une colonne plus à droite
 			if (find4alignedItems(c,NBR_ROWS-1,1,-1)) return ++turn%2;
 		}
-		
+
 		if (nbTurn == NBR_COLUMNS*NBR_ROWS) return -2;
 		return -1;
 	}
@@ -168,7 +169,24 @@ public class Connect4 {
 		s2+="  1   2   3   4   5   6  7\n";
 		return s2;
 	}
+	public void justForTestingRWins(int[] tabColumn) {
+
+		System.out.println(this.toString());
+		System.out.println("la valeur de gagnant vaut actuellement : "+this.win());
+		for (int i = 0; i < tabColumn.length; i++) {
+			System.out.println("on joue "+tabColumn[i]);
+			play(tabColumn[i]-1);
+			System.out.println(this.toString());
+			System.out.println("la valeur de gagnant vaut actuellement : "+this.win());
+		}
+	}
+
+	public int getTurn() {
+		return turn;
+	}
+
 	public static void main(String[] args) {
+
 		Connect4 connect4 = new Connect4();
 		int whoWins = -1;
 		do {
@@ -178,7 +196,7 @@ public class Connect4 {
 				message+="Red";
 			else 
 				message+="Yellow";
-			System.out.println(message+ " who plays");
+			System.out.println(message + " who plays");
 			String s = JOptionPane.showInputDialog("The column number (1-7) for exemple 1 for the left");
 			int column = Integer.parseInt(s);
 			column--;
@@ -188,8 +206,8 @@ public class Connect4 {
 		System.out.println(connect4.toString());
 		System.out.println("Who wins : "+whoWins);
 		switch (whoWins) {
-		case 0 : JOptionPane.showMessageDialog(null, "The Red wins"); break;
-		case 1 : JOptionPane.showMessageDialog(null, "The Yellow wins"); break;
+		case  0 : JOptionPane.showMessageDialog(null, "The Red wins"); break;
+		case  1 : JOptionPane.showMessageDialog(null, "The Yellow wins"); break;
 		case -2 : JOptionPane.showMessageDialog(null, "It is a draw!"); break;
 		}
 	}
