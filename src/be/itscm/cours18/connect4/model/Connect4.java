@@ -12,7 +12,7 @@ public class Connect4 {
 	public final static int RED = 0;
 	public final static int YELLOW = 1;
 	public final static int tabColor[] = {RED,YELLOW};
-	public final static String tabColorString[] = {"red","yellow"};
+	public final static String tabColorString[] = {"Red","Yellow"};
 	public final static int NBR_COLUMNS = 7;
 	public final static int NBR_ROWS = 6;
 
@@ -191,12 +191,13 @@ public class Connect4 {
 		int whoWins = -1;
 		do {
 			System.out.println(connect4.toString());
-			String message= "It is the ";
-			if (tabColor[connect4.turn] == Connect4.RED) 
-				message+="Red";
-			else 
-				message+="Yellow";
-			System.out.println(message + " who plays");
+			String message= "It is ";
+			message += tabColorString[connect4.turn];
+//			if (tabColor[connect4.turn] == Connect4.RED) 
+//				message+="Red";
+//			else 
+//				message+="Yellow";
+			System.out.println(message + "'s turn");
 			String s = JOptionPane.showInputDialog("The column number (1-7) for exemple 1 for the left");
 			int column = Integer.parseInt(s);
 			column--;
@@ -204,10 +205,10 @@ public class Connect4 {
 			whoWins = connect4.win();
 		}while (whoWins==-1);
 		System.out.println(connect4.toString());
-		System.out.println("Who wins : "+whoWins);
+//		System.out.println("Who wins : "+whoWins);
 		switch (whoWins) {
-		case  0 : JOptionPane.showMessageDialog(null, "The Red wins"); break;
-		case  1 : JOptionPane.showMessageDialog(null, "The Yellow wins"); break;
+		case  0 : JOptionPane.showMessageDialog(null, "Red wins"); break;
+		case  1 : JOptionPane.showMessageDialog(null, "Yellow wins"); break;
 		case -2 : JOptionPane.showMessageDialog(null, "It is a draw!"); break;
 		}
 	}

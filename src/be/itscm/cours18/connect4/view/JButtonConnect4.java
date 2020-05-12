@@ -5,7 +5,7 @@ import javax.swing.JButton;
 public class JButtonConnect4 extends JButton {
 	private int column;
 	private int row;
-	private boolean clickable= false;
+	private boolean clickable= true;
 	public int getColumn() {
 		return column;
 	}
